@@ -1,0 +1,15 @@
+﻿@using System.Xml.Linq
+
+@{
+    ViewBag.Title = "Validate";
+}
+
+@using (Html.BeginForm("Validate", "Transmission", FormMethod.Post))
+{
+    <input type="file" name="file" />
+    <br />
+    <button type="submit">Upload</button>
+    <p>@ViewBag.Xml</p>
+}
+
+

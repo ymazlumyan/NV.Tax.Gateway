@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NV.Tax.SST.Gateway.MVC", "NV.Tax.SST.Gateway.MVC\NV.Tax.SST.Gateway.MVC.csproj", "{6D3E60F4-6726-47CF-ACF8-63CF64504DBC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NV.Tax.SST.Gateway.DB", "NV.Tax.SST.Gateway.DB\NV.Tax.SST.Gateway.DB.csproj", "{6365C04C-FA8F-4A1B-AFA9-55AB795707A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NV.Tax.SST.Gateway.Rules", "NV.Tax.SST.Gateway.Rules\NV.Tax.SST.Gateway.Rules.csproj", "{1CB9183E-DA0E-4301-8557-686CB40A0E47}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NV.Tax.SST.Gateway.Interfaces", "NV.Tax.SST.Gateway.Interfaces\NV.Tax.SST.Gateway.Interfaces.csproj", "{58E3F06B-BB4A-4E9C-99D2-833EDCF38BDC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6D3E60F4-6726-47CF-ACF8-63CF64504DBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D3E60F4-6726-47CF-ACF8-63CF64504DBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D3E60F4-6726-47CF-ACF8-63CF64504DBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D3E60F4-6726-47CF-ACF8-63CF64504DBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6365C04C-FA8F-4A1B-AFA9-55AB795707A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6365C04C-FA8F-4A1B-AFA9-55AB795707A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6365C04C-FA8F-4A1B-AFA9-55AB795707A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6365C04C-FA8F-4A1B-AFA9-55AB795707A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CB9183E-DA0E-4301-8557-686CB40A0E47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CB9183E-DA0E-4301-8557-686CB40A0E47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CB9183E-DA0E-4301-8557-686CB40A0E47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CB9183E-DA0E-4301-8557-686CB40A0E47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58E3F06B-BB4A-4E9C-99D2-833EDCF38BDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58E3F06B-BB4A-4E9C-99D2-833EDCF38BDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58E3F06B-BB4A-4E9C-99D2-833EDCF38BDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58E3F06B-BB4A-4E9C-99D2-833EDCF38BDC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

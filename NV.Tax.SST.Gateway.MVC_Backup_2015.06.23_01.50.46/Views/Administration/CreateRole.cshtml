@@ -1,0 +1,30 @@
+﻿@using Kendo.Mvc.Resources
+<div id="example">
+    <div id="grid"></div>
+    <script>
+                $(document).ready(function () {
+                    $("#grid").kendoGrid({
+                        dataSource: {
+                            type: "odata",
+                            pageSize: 5
+                        },
+                        height: 550,
+                        groupable: true,
+                        sortable: true,
+                        pageable: {
+                            refresh: true,
+                            pageSizes: true,
+                            buttonCount: 5
+                        },
+                        columns: [{
+                            field: "Username",
+                            title: "User Name",
+                            width: 500
+                        }, {
+                            field: "Processingtype",
+                            title: "Processing Type"
+                        }]
+                    });
+                });
+    </script>
+</div>

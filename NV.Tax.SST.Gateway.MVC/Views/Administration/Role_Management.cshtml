@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Role_Management";
+}
+
+<div class="x-form-wrapper">
+    <div class="x-form-title">
+        <h3><strong>Role Management</strong></h3>
+    </div>
+    <div class="x-form-body">
+        <h4>Roles for <strong>@Url.RequestContext.RouteData.Values["id"]</strong></h4>
+        <table class="table table-bordered">
+            <tr style="background: #888">
+                <td><strong>Used Roles</strong></td>
+            </tr>
+            @{
+                string name = Url.RequestContext.RouteData.Values["id"].ToString();
+                var db = new NV.Tax.SST.Gateway.DB.Entities.userRoleEntity();
+                var mainDb = new NV.Tax.SST.Gateway.DB.Entities.sstpEntities();
+                var data = from d in db.user_role
+                           where d.username == name
+                           select d;
+
+                var roles = from d in mainDb.roles
+                            select d;
+                            
+                int count = data.Count();           
+                foreach(var item in data)
+                {
+                    <tr>
+                        <td>@Html.ActionLink(item.role.ToString(), "RemoveRole", "Administration",
+                                new { name = Url.RequestContext.RouteData.Values["id"], role = item.role.ToString() },
+                                new { @class = "btn btn-lg" })
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+        <table class="table table-bordered">
+            <tr style="background: #888">
+                <td><strong>Available Roles</strong></td>
+            </tr>
+            @{
+                foreach (var listItem in roles)
+                {
+                    if (!data.Any(m => m.role == listItem.role1))
+                    {
+                        <tr>
+                            <td>@Html.ActionLink(@listItem.role1.ToString(), "AddRole", "Administration", 
+                                new { name = Url.RequestContext.RouteData.Values["id"], role = listItem.role1.ToString()},
+                                new { @class = "btn btn-lg"})
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+        </table>
+        <a href="/Administration/Manager" class="btn btn-default btn-lg">Back</a>
+    </div>
+</div>

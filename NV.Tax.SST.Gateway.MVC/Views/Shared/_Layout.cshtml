@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>SST Gateway</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+	<!--This bundle was moved by the Telerik VS Extensions for compatibility reasons-->
+	@Scripts.Render("~/bundles/jquery")
+<link rel="stylesheet" href="@Url.Content("~/Content/kendo.common.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/kendo.default.min.css")">
+    <script src="@Url.Content("~/Scripts/kendo.web.min.js")"></script>
+    	<link href="http://cdn.kendostatic.com/2015.2.624/styles/kendo.common.min.css" rel="stylesheet" type="text/css" />
+	<link href="http://cdn.kendostatic.com/2015.2.624/styles/kendo.mobile.all.min.css" rel="stylesheet" type="text/css" />
+	<link href="http://cdn.kendostatic.com/2015.2.624/styles/kendo.dataviz.min.css" rel="stylesheet" type="text/css" />
+	<link href="http://cdn.kendostatic.com/2015.2.624/styles/kendo.default.min.css" rel="stylesheet" type="text/css" />
+	<link href="http://cdn.kendostatic.com/2015.2.624/styles/kendo.dataviz.default.min.css" rel="stylesheet" type="text/css" />
+	<script src="http://cdn.kendostatic.com/2015.2.624/js/jquery.min.js"></script>
+	<script src="http://cdn.kendostatic.com/2015.2.624/js/jszip.min.js"></script>
+	<script src="http://cdn.kendostatic.com/2015.2.624/js/kendo.all.min.js"></script>
+	<script src="http://cdn.kendostatic.com/2015.2.624/js/kendo.aspnetmvc.min.js"></script>
+	<script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>
+</head>
+<body>
+    <nav class="navbar transparent navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="nav-image"></div>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @if (!Request.IsAuthenticated)
+                    {
+                        <li class="nav-items color-white color-strong"><a href="http://www.nv.gov">State of Nevada</a></li>
+                        <li class="nav-items"><a href="https://www.nevadatax.nv.gov">Nevada Department of Taxation</a></li>
+                    }
+                    else
+                    {
+                        <li class="dropdown">
+                            @Html.ActionLink("Home", "Index", "Home")
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administration<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Home", "Index", "Administration")</li>
+                                <li>@Html.ActionLink("Create User", "CreateUser", "Administration")</li>
+                                <li>@Html.ActionLink("Create Role", "CreateRole", "Administration")</li>
+                                <li>@Html.ActionLink("User Management", "Manager", "Administration")</li>
+                                <li>@Html.ActionLink("Data Viewer", "DataViewer", "Administration")</li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tax Staff<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Registrations", "Register", "Tax")</li>
+                                <li>@Html.ActionLink("Download Spreadhseet", "Spreadsheet", "Tax")</li>
+                                <li>@Html.ActionLink("Transmission Queue", "Transmission", "Tax")</li>
+                                <li>@Html.ActionLink("Processing Status", "Status", "Tax")</li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Transmitter<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Validate SSTP Message", "Validate", "Transmission")</li>
+                                <li>@Html.ActionLink("Send", "Send", "Transmission")</li>
+                                <li>@Html.ActionLink("Request Ack", "Request", "Transmission")</li>
+                                <li>@Html.ActionLink("Request Last Ack", "RequestLast", "Transmission")</li>
+                            </ul>
+                        </li>                   
+                    }
+                </ul>
+                <ul class="nav navbar-nav navbar-right pull-right">
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li><a href="#">Hello, <strong>@HttpContext.Current.User.Identity.Name</strong></a></li>
+                        <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Log in", "Login", "Account")</li>
+                    }
+                </ul>
+
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+    <div class="body-content">
+        @RenderBody()
+    </div>
+    <footer class="footer-wrapper">
+        <div class="container">
+            <h3>STREAMLINED SALES TAX</h3>
+            <hr />
+            <div class="row">
+                <ul class="col-md-5 footer-links">
+                    <li><a href="http://tax.state.nv.us/documents/2011%20Certification%20Grid%20Updated%2010.19.11.pdf">Nevada's Certificate of Compliance</a></li>
+                    <li><a href="http://tax.state.nv.us/documents/Nevada%20Cover%20letter%20to%20CRIC%2010.19.11.pdf">Nevada's Annual Recertification for Full Membership</a></li>
+                    <li><a href="http://tax.state.nv.us/documents/SST%202011%20Taxability%20Matrix%20Final%204-04-2012.pdf">Nevada Taxability Matrix</a></li>
+                    <li><a href="http://tax.state.nv.us/documents/AB403.pdf">Assembly Bill 403</a></li>
+                    <li><a href="http://tax.state.nv.us/documents/AB534.pdf">Assembly Bill 534</a></li>
+                    <li><a href="http://tax.state.nv.us/documents/SB34_EN.pdf">Senate Bill 34</a></li>
+                    <li><a href="http://tax.state.nv.us/documents/SB502.pdf">Senate Bill 502</a></li>
+                    <li><a href="http://tax.state.nv.us/documents/SB515_EN.pdf">Senate Bill 515</a></li>
+                </ul>
+                <ul class="col-md-5 footer-links">
+                    <li><a href="http://streamlinedsalestax.org/ratesandboundry/">Downloadable Rates and Boundary Database Files and Instructions</a></li>
+                    <li><a href="http://tax.state.nv.us/documents/Certified%20Service%20Providers.pdf">Certified Service Providers</a></li>
+                    <li><a href="http://www.streamlinedsalestax.org/">Streamlined Sales and Use Tax Governing Board Link</a></li>
+                    <li><a href="http://tax.state.nv.us/documents/Exemption%20Certificate%20Instructions.pdf">SST Certificate of Exemption Instructions</a></li>
+                    <li><a href="http://tax.state.nv.us/documents/F0003%20Fill%20in%20Exemption%20Certificate%20Form_11%2010%20101.pdf">SST Certificate of Exemption</a> (PDF)</li>
+                    <li><a href="http://tax.state.nv.us/documents/F0003%20Exemption%20Certificate_9_18_09%20(2).doc">SST Certificate of Exemption</a> (Word)</li>
+                </ul>
+            </div>
+        </div>
+        <br /><br />
+    </footer>
+    
+    
+    <script src="~/Scripts/bootstrap.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

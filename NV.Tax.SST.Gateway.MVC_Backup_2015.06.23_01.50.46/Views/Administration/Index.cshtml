@@ -1,0 +1,31 @@
+﻿@using NV.Tax.SST.Gateway.MVC.Models
+
+@{
+    AdministrationModel admin = new AdministrationModel();
+}
+
+<div class="table-result">
+    <h3 style="text-align:left">Administration Home</h3>
+    <table width="100%" style="text-align: left">
+        <tr class="table-heading">
+            <td width="80%"><b>Job</b></td>
+            <td><b>Status</b></td>
+        </tr>
+        <tr>
+            <td><a href="javascript:toggleData('dataID')">Data Purge Scheduler</a></td>
+            <td id="dataID">Off</td>
+        </tr>
+        <tr>
+            <td><a href="javascript:toggleData('jobID')">Job Purge Scheduler</a></td>
+            <td id="jobID">Off</td>
+        </tr>
+    </table>
+</div>
+
+<script>
+    function toggleData(toggler)
+    {
+        var item = document.getElementById(toggler);
+        item.innerHTML = (item.innerHTML == 'Off') ? 'On' : 'Off';
+    }
+</script>

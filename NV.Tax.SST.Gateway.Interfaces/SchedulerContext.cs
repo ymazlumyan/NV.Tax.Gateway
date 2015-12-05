@@ -1,0 +1,11 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace NV.Tax.SST.Gateway.Interfaces
+{
+    public class SchedulerContext
+    {
+    }
+}

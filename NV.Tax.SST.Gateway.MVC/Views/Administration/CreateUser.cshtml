@@ -1,0 +1,33 @@
+﻿@model NV.Tax.SST.Gateway.MVC.Models.AdministrationModel
+<div class="x-form-wrapper">
+    <div class="x-form-title">
+        <h3><strong>Create User</strong></h3>
+    </div>
+    <div class="x-form-body">
+        @using (Html.BeginForm("CreateUser", "Administration", FormMethod.Post))
+        {
+            <div class="form-group">
+                @Html.LabelFor(m => m.UserName, new { @class = "label-control" })
+                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", autofocus = "" })
+                @Html.ValidationMessageFor(m => m.UserName, null, new { @class = "alert-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Password, new { @class = "label-control" })
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Password, null, new { @class = "alert-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.ProcessType, new { @class = "label-control" })
+                @Html.DropDownListFor(m => m.ProcessType, new[]{
+                    new SelectListItem { Text = "Select One", Value = "SelectOne", Selected = true},
+                    new SelectListItem { Text = "Processed", Value = "Processed" },
+                    new SelectListItem { Text = "Both", Value = "Both" }
+                }, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.ProcessType, null, new { @class = "alert-danger" })
+            </div>
+            <div class="form-group">
+                <button type="submit" name="button" class="btn btn-lg btn-primary">Create</button>
+            </div>
+        }
+    </div>
+</div>

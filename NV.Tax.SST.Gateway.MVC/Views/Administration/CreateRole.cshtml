@@ -1,0 +1,20 @@
+﻿@model NV.Tax.SST.Gateway.MVC.Models.RoleModel
+
+@using (Html.BeginForm("CreateRole", "Administration", FormMethod.Post))
+{
+    <div class="x-form-wrapper">
+        <div class="x-form-title">
+            <h2>Create User Role</h2>
+        </div>
+        <div class="x-form-body">
+            <div class="container row">    
+                @Html.LabelFor(m => m.UserRole, new { @class = "label-control col-md-3" })
+                @Html.TextBoxFor(m => m.UserRole, new { @class = "form-control col-md-9", autofocus = "" })
+            </div> 
+            <br />
+            <div class="middle">
+                <button type="submit" class="btn btn-lg btn-primary">Create</button>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="sstpModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ack">
+          <Key>
+            <PropertyRef Name="identity" />
+          </Key>
+          <Property Name="identity" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="id" Type="varchar" MaxLength="255" />
+          <Property Name="transmitter" Type="varchar" MaxLength="255" />
+          <Property Name="timestamp" Type="datetime" Precision="0" />
+          <Property Name="data" Type="longtext" />
+          <Property Name="createdonhostname" Type="varchar" MaxLength="255" />
+          <Property Name="version" Type="varchar" MaxLength="255" />
+          <Property Name="processed" Type="bit" />
+        </EntityType>
+        <EntityType Name="batch">
+          <Key>
+            <PropertyRef Name="identity" />
+          </Key>
+          <Property Name="identity" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="id" Type="varchar" MaxLength="255" />
+          <Property Name="transmitter" Type="varchar" MaxLength="255" />
+          <Property Name="timestamp" Type="datetime" Precision="0" />
+          <Property Name="data" Type="longtext" />
+          <Property Name="createdonhostname" Type="varchar" MaxLength="255" />
+          <Property Name="version" Type="varchar" MaxLength="255" />
+          <Property Name="processed" Type="bit" />
+          <Property Name="processingaborted" Type="bit" />
+          <Property Name="processingunderway" Type="bit" />
+        </EntityType>
+        <EntityType Name="config">
+          <Key>
+            <PropertyRef Name="opt" />
+          </Key>
+          <Property Name="opt" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="value" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="receipt">
+          <Key>
+            <PropertyRef Name="identity" />
+          </Key>
+          <Property Name="identity" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="id" Type="varchar" MaxLength="255" />
+          <Property Name="transmitter" Type="varchar" MaxLength="255" />
+          <Property Name="timestamp" Type="datetime" Precision="0" />
+          <Property Name="data" Type="longtext" />
+          <Property Name="createdonhostname" Type="varchar" MaxLength="255" />
+          <Property Name="version" Type="varchar" MaxLength="255" />
+          <Property Name="processed" Type="bit" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="role" />
+          </Key>
+          <Property Name="role" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sstpid">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="transmission">
+          <Key>
+            <PropertyRef Name="identity" />
+          </Key>
+          <Property Name="identity" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="id" Type="varchar" MaxLength="255" />
+          <Property Name="transmitter" Type="varchar" MaxLength="255" />
+          <Property Name="timestamp" Type="datetime" Precision="0" />
+          <Property Name="data" Type="longtext" />
+          <Property Name="createdonhostname" Type="varchar" MaxLength="255" />
+          <Property Name="transmissiontype" Type="varchar" MaxLength="255" />
+          <Property Name="version" Type="varchar" MaxLength="255" />
+          <Property Name="processed" Type="bit" />
+          <Property Name="processingaborted" Type="bit" />
+          <Property Name="processed_dt" Type="datetime" Precision="0" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="username" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="255" />
+          <Property Name="processtype" Type="char" MaxLength="1" />
+          <Property Name="automanage" Type="bit" />
+        </EntityType>
+        <EntityType Name="user_role">
+          <Key>
+            <PropertyRef Name="username" />
+            <PropertyRef Name="role" />
+          </Key>
+          <Property Name="username" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="role" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <Association Name="FK143BF46A4538E01">
+          <End Role="role" Type="Self.role" Multiplicity="1" />
+          <End Role="user_role" Type="Self.user_role" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="role" />
+            </Principal>
+            <Dependent Role="user_role">
+              <PropertyRef Name="role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK143BF46A9970EEEC">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="user_role" Type="Self.user_role" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="username" />
+            </Principal>
+            <Dependent Role="user_role">
+              <PropertyRef Name="username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="sstpModelStoreContainer">
+          <EntitySet Name="ack" EntityType="Self.ack" Schema="sstp" store:Type="Tables" />
+          <EntitySet Name="batch" EntityType="Self.batch" Schema="sstp" store:Type="Tables" />
+          <EntitySet Name="config" EntityType="Self.config" Schema="sstp" store:Type="Tables" />
+          <EntitySet Name="receipt" EntityType="Self.receipt" Schema="sstp" store:Type="Tables" />
+          <EntitySet Name="role" EntityType="Self.role" Schema="sstp" store:Type="Tables" />
+          <EntitySet Name="sstpid" EntityType="Self.sstpid" Schema="sstp" store:Type="Tables" />
+          <EntitySet Name="transmission" EntityType="Self.transmission" Schema="sstp" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="sstp" store:Type="Tables" />
+          <EntitySet Name="user_role" EntityType="Self.user_role" Schema="sstp" store:Type="Tables" />
+          <AssociationSet Name="FK143BF46A4538E01" Association="Self.FK143BF46A4538E01">
+            <End Role="role" EntitySet="role" />
+            <End Role="user_role" EntitySet="user_role" />
+          </AssociationSet>
+          <AssociationSet Name="FK143BF46A9970EEEC" Association="Self.FK143BF46A9970EEEC">
+            <End Role="user" EntitySet="user" />
+            <End Role="user_role" EntitySet="user_role" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="sstpModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ack">
+          <Key>
+            <PropertyRef Name="identity" />
+          </Key>
+          <Property Name="identity" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="transmitter" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="timestamp" Type="DateTime" />
+          <Property Name="data" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="createdonhostname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="version" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="processed" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="batch">
+          <Key>
+            <PropertyRef Name="identity" />
+          </Key>
+          <Property Name="identity" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="transmitter" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="timestamp" Type="DateTime" />
+          <Property Name="data" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="createdonhostname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="version" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="processed" Type="Boolean" />
+          <Property Name="processingaborted" Type="Boolean" />
+          <Property Name="processingunderway" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="config">
+          <Key>
+            <PropertyRef Name="opt" />
+          </Key>
+          <Property Name="opt" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="value" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="receipt">
+          <Key>
+            <PropertyRef Name="identity" />
+          </Key>
+          <Property Name="identity" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="transmitter" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="timestamp" Type="DateTime" />
+          <Property Name="data" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="createdonhostname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="version" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="processed" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="role1" />
+          </Key>
+          <Property Name="role1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="users" Relationship="Self.user_role" FromRole="role" ToRole="user" />
+        </EntityType>
+        <EntityType Name="sstpid">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="transmission">
+          <Key>
+            <PropertyRef Name="identity" />
+          </Key>
+          <Property Name="identity" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="transmitter" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="timestamp" Type="DateTime" />
+          <Property Name="data" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="createdonhostname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="transmissiontype" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="version" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="processed" Type="Boolean" />
+          <Property Name="processingaborted" Type="Boolean" />
+          <Property Name="processed_dt" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="username" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="processtype" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="automanage" Type="Boolean" />
+          <NavigationProperty Name="roles" Relationship="Self.user_role" FromRole="user" ToRole="role" />
+        </EntityType>
+        <Association Name="user_role">
+          <End Role="role" Type="Self.role" Multiplicity="*" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="sstpEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="acks" EntityType="Self.ack" />
+          <EntitySet Name="batches" EntityType="Self.batch" />
+          <EntitySet Name="configs" EntityType="Self.config" />
+          <EntitySet Name="receipts" EntityType="Self.receipt" />
+          <EntitySet Name="roles" EntityType="Self.role" />
+          <EntitySet Name="sstpids" EntityType="Self.sstpid" />
+          <EntitySet Name="transmissions" EntityType="Self.transmission" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <AssociationSet Name="user_role" Association="Self.user_role">
+            <End Role="role" EntitySet="roles" />
+            <End Role="user" EntitySet="users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="sstpModelStoreContainer" CdmEntityContainer="sstpEntities">
+          <EntitySetMapping Name="acks">
+            <EntityTypeMapping TypeName="sstpModel.ack">
+              <MappingFragment StoreEntitySet="ack">
+                <ScalarProperty Name="identity" ColumnName="identity" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="transmitter" ColumnName="transmitter" />
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+                <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="createdonhostname" ColumnName="createdonhostname" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="processed" ColumnName="processed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="batches">
+            <EntityTypeMapping TypeName="sstpModel.batch">
+              <MappingFragment StoreEntitySet="batch">
+                <ScalarProperty Name="identity" ColumnName="identity" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="transmitter" ColumnName="transmitter" />
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+                <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="createdonhostname" ColumnName="createdonhostname" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="processed" ColumnName="processed" />
+                <ScalarProperty Name="processingaborted" ColumnName="processingaborted" />
+                <ScalarProperty Name="processingunderway" ColumnName="processingunderway" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="configs">
+            <EntityTypeMapping TypeName="sstpModel.config">
+              <MappingFragment StoreEntitySet="config">
+                <ScalarProperty Name="opt" ColumnName="opt" />
+                <ScalarProperty Name="value" ColumnName="value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="receipts">
+            <EntityTypeMapping TypeName="sstpModel.receipt">
+              <MappingFragment StoreEntitySet="receipt">
+                <ScalarProperty Name="identity" ColumnName="identity" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="transmitter" ColumnName="transmitter" />
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+                <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="createdonhostname" ColumnName="createdonhostname" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="processed" ColumnName="processed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="roles">
+            <EntityTypeMapping TypeName="sstpModel.role">
+              <MappingFragment StoreEntitySet="role">
+                <ScalarProperty Name="role1" ColumnName="role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sstpids">
+            <EntityTypeMapping TypeName="sstpModel.sstpid">
+              <MappingFragment StoreEntitySet="sstpid">
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="transmissions">
+            <EntityTypeMapping TypeName="sstpModel.transmission">
+              <MappingFragment StoreEntitySet="transmission">
+                <ScalarProperty Name="identity" ColumnName="identity" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="transmitter" ColumnName="transmitter" />
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+                <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="createdonhostname" ColumnName="createdonhostname" />
+                <ScalarProperty Name="transmissiontype" ColumnName="transmissiontype" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="processed" ColumnName="processed" />
+                <ScalarProperty Name="processingaborted" ColumnName="processingaborted" />
+                <ScalarProperty Name="processed_dt" ColumnName="processed_dt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="sstpModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="processtype" ColumnName="processtype" />
+                <ScalarProperty Name="automanage" ColumnName="automanage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="user_role" TypeName="sstpModel.user_role" StoreEntitySet="user_role">
+            <EndProperty Name="role">
+              <ScalarProperty Name="role1" ColumnName="role" />
+            </EndProperty>
+            <EndProperty Name="user">
+              <ScalarProperty Name="username" ColumnName="username" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

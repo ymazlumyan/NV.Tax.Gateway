@@ -1,0 +1,44 @@
+﻿@model NV.Tax.SST.Gateway.MVC.Models.AdministrationModel
+<div class="x-form-wrapper">
+    <div class="x-form-title">
+        <h3><strong>User Management</strong></h3>
+    </div>
+    <div class="x-form-body">
+        <table class="table table-striped table-bordered">
+            <tr style="background: #888">
+                <td width="15%"><strong>Username</strong></td>
+                <td width="20%"><strong>Process Type</strong></td>
+                <td width="10%"><strong>Auto Managed</strong></td>
+                <td width="10%"><strong>Actions</strong></td>
+            </tr>
+            @{
+                foreach (var item in ViewBag.UsersList)
+                {
+                    <tr>
+                        <td>@item.UserName</td>
+                        <td>@item.ProcessType</td>
+                        <td><input type="checkbox" checked="@item.isAutoManaged"/></td>
+                        <td>
+                            <div id="navbar" class="navbar-collapse collapse">
+                                <ul class="nav navbar-nav">
+                                    <li class="dropdown">
+
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                            <span class="glyphicon glyphicon-cog"></span>
+                                            Actions
+                                            <b class="caret"></b>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li>@Html.ActionLink("Edit User", "EditUser", "Administration")</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div><!--/.nav-collapse -->
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+</div>
+
