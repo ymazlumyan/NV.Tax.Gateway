@@ -59,3 +59,15 @@ textarea {
 .validation-summary-valid {
     display: none;
 }
+
+#forgotPassword {
+    display: table;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+#registerLink {
+    font-size: 20px;
+    display: table;
+    margin: 0 auto;
+}

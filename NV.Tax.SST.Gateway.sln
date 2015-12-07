@@ -11,6 +11,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NV.Tax.SST.Gateway.Rules", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NV.Tax.SST.Gateway.Interfaces", "NV.Tax.SST.Gateway.Interfaces\NV.Tax.SST.Gateway.Interfaces.csproj", "{58E3F06B-BB4A-4E9C-99D2-833EDCF38BDC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EAC73D0A-CAC6-4EA6-893E-B562C4BB9674}"
+	ProjectSection(SolutionItems) = preProject
+		WebEssentials2015-Settings.json = WebEssentials2015-Settings.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

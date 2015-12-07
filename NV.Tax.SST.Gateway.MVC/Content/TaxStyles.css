@@ -1,0 +1,32 @@
+@import url(https://fonts.googleapis.com/css?family=Pacifico);
+@import url(https://fonts.googleapis.com/css?family=Fjalla+One);
+/******************************************************** 
+    File Name:          menu.less
+    Author:             Yervand Mazlumyan
+    Date Created:       12/06/2015
+    Description:
+*********************************************************/
+.footer {
+  background: white;
+  padding-top: 0.1em;
+}
+.footer .container {
+  color: green;
+}
+.footer .container h3,
+.footer .container .h3 {
+  font-family: "Fjalla One";
+}
+.notification-container {
+  background-color: #eee;
+  padding-top: 0.1em;
+  padding-bottom: 0.1em;
+  display: table;
+  margin: 0 auto;
+  width: 100%;
+}
+.notification-container h2,
+.notification-container .h2 {
+  font-size: 16pt;
+  text-align: center;
+}

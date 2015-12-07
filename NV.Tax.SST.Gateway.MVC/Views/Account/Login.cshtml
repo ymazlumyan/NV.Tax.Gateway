@@ -1,41 +1,74 @@
 ﻿@model NV.Tax.SST.Gateway.MVC.Models.AccountViewModel
-<script>
-    document.body.style.backgroundImage = "url('../Resources/Sierra2.jpg')";
-    document.body.style.backgroundSize = "cover";
-</script>
-<br style="line-height: 10" />
 <section class="featured container">
     <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-10">
             <div class="title">
                 <h1>
-                    Welcome to the New<br/>Streamlined Sales Tax Gateway
+                    Welcome to the New<br />Streamlined Sales Tax Gateway
                 </h1>
                 <h2>
                     The easiest way to manage your Streamlined Sales Tax with the Nevada Department of Taxation.
-                    <br/><strong>Log In</strong> or <strong>Sign up</strong> to get started with managing your Streamlined Sales Tax
+                    <br /><strong>Log In</strong> or <strong>Sign up</strong> to get started with managing your Streamlined Sales Tax
                 </h2>
             </div>
-            @using (Html.BeginForm("Login", "Account", FormMethod.Post, htmlAttributes: new { @class = "form-inline" }))
-            { 
-                @Html.AntiForgeryToken()
-                @Html.ValidationSummary(true)
-                <div class="form-group">
-                    @Html.TextBoxFor(m => m.Username, new {@class = "form-control", @placeholder = "username"})
-                    @Html.ValidationMessageFor(m => m.Username)
-                </div>
-                <div class="form-group">
-                    @Html.PasswordFor(m => m.Password, new {@class = "form-control", @placeholder = "password"})
-                    @Html.ValidationMessageFor(m => m.Password)
-                </div>
-                <input type="submit" value="Log in" class="btn btn-outline"/><br />
-                @Html.ActionLink("Forgot your username or password?", "LostPassword", "Home", routeValues: null, htmlAttributes: new { @id = "forgotPassword" })
-                <br />
-                @Html.ActionLink("Or Sign Up Today!", "Signup", "Home", routeValues: null, htmlAttributes: new { @id = "registerLink" })
+            @if (Request.IsAuthenticated)
+            {
+                @Html.ActionLink("Continue to my account", "Index", "Home", null, new { @class = "form-control" })
+            }
+            else
+            {
+                using (Html.BeginForm("Login", "Account", FormMethod.Post, htmlAttributes: new { @class = "form-inline" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.Username, new { @class = "form-control", @placeholder = "username" })
+                        @Html.ValidationMessageFor(m => m.Username)
+                    </div>
+                    <div class="form-group">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "password" })
+                        @Html.ValidationMessageFor(m => m.Password)
+                    </div>
+                    <input type="submit" value="Log in" class="btn btn-outline" /><br />
+                    @Html.ActionLink("Forgot your username or password?", "LostPassword", "Home", routeValues: null, htmlAttributes: new { @id = "forgotPassword" })
+                    <br />
+                    @Html.ActionLink("Or Sign Up Today!", "Signup", "Home", routeValues: null, htmlAttributes: new { @id = "registerLink" })
 
+                }
             }
         </div>
         <div class="col-md-1"></div>
     </div>
 </section>
+<br />
+<div class="notification-container">
+    <h2>Streamlined Sales Tax Notification Area</h2>
+</div>
+<footer class="footer">
+    <div class="container">
+        <h3>STREAMLINED SALES TAX</h3>
+        <hr />
+        <div class="row">
+            <ul class="col-md-5 footer-links">
+                <li><a href="http://tax.state.nv.us/documents/2011%20Certification%20Grid%20Updated%2010.19.11.pdf">Nevada's Certificate of Compliance</a></li>
+                <li><a href="http://tax.state.nv.us/documents/Nevada%20Cover%20letter%20to%20CRIC%2010.19.11.pdf">Nevada's Annual Recertification for Full Membership</a></li>
+                <li><a href="http://tax.state.nv.us/documents/SST%202011%20Taxability%20Matrix%20Final%204-04-2012.pdf">Nevada Taxability Matrix</a></li>
+                <li><a href="http://tax.state.nv.us/documents/AB403.pdf">Assembly Bill 403</a></li>
+                <li><a href="http://tax.state.nv.us/documents/AB534.pdf">Assembly Bill 534</a></li>
+                <li><a href="http://tax.state.nv.us/documents/SB34_EN.pdf">Senate Bill 34</a></li>
+                <li><a href="http://tax.state.nv.us/documents/SB502.pdf">Senate Bill 502</a></li>
+                <li><a href="http://tax.state.nv.us/documents/SB515_EN.pdf">Senate Bill 515</a></li>
+            </ul>
+            <ul class="col-md-5 footer-links">
+                <li><a href="http://streamlinedsalestax.org/ratesandboundry/">Downloadable Rates and Boundary Database Files and Instructions</a></li>
+                <li><a href="http://tax.state.nv.us/documents/Certified%20Service%20Providers.pdf">Certified Service Providers</a></li>
+                <li><a href="http://www.streamlinedsalestax.org/">Streamlined Sales and Use Tax Governing Board Link</a></li>
+                <li><a href="http://tax.state.nv.us/documents/Exemption%20Certificate%20Instructions.pdf">SST Certificate of Exemption Instructions</a></li>
+                <li><a href="http://tax.state.nv.us/documents/F0003%20Fill%20in%20Exemption%20Certificate%20Form_11%2010%20101.pdf">SST Certificate of Exemption</a> (PDF)</li>
+                <li><a href="http://tax.state.nv.us/documents/F0003%20Exemption%20Certificate_9_18_09%20(2).doc">SST Certificate of Exemption</a> (Word)</li>
+            </ul>
+        </div>
+    </div>
+    <br /><br />
+</footer>
